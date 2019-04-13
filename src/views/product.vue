@@ -55,7 +55,7 @@
       </div>
       <div class="row pb-3">
         <div
-          class="like col-3"
+          class="like col-md-3 col-6 mb-4"
           v-for="(card,index) in randomp"
           :key="index"
         >
