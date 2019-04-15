@@ -49,10 +49,11 @@
                   :key="index"
                 >
                   <td>
-                    <a
+                    <button
                       href="#"
-                      class="text-danger"
+                      class="btn text-danger disabled"
                       @click.prevent="removeCart(cart.id)"
+                      :disabled="status===cart.id ? true : false"
                     >
                       <i
                         v-if="status===cart.id"
@@ -62,7 +63,7 @@
                         v-else
                         class="fas fa-trash-alt"
                       ></i>
-                    </a>
+                    </button>
                   </td>
                   <td>{{cart.product.title}}</td>
                   <td>{{cart.qty}}</td>
@@ -87,7 +88,6 @@
               data-dismiss="modal"
             >繼續選購</button>
             <router-link
-              type="button"
               class="btn btn-success"
               to="/customerorder"
               data-dismiss="modal"
@@ -139,5 +139,8 @@ export default {
   position: fixed;
   bottom: 200px;
   right: 80px;
+}
+.table td{
+  vertical-align: middle !important;
 }
 </style>

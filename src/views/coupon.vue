@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary mt-4" @click="openpostModal('post')">新增優惠券</button>
+      <button
+        class="btn btn-primary mt-4"
+        @click="openpostModal('post')"
+      >新增優惠券</button>
     </div>
     <table class="table">
       <thead>
@@ -14,23 +17,40 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item,key) in coupon" :key="key">
+        <tr
+          v-for="(item,key) in coupon"
+          :key="key"
+        >
           <td>{{item.title}}</td>
           <td>{{item.percent}}%</td>
           <td>{{item.due_date}}</td>
           <td>{{item.code}}</td>
           <td class="d-flex justify-content-center">
             <div>
-              <button class="btn btn-outline-primary" @click="openpostModal('put',item)">修改</button>
-              <button class="btn btn-outline-danger" @click="opendelModal('delete',item)">刪除</button>
+              <button
+                class="btn btn-outline-primary"
+                @click="openpostModal('put',item)"
+              >修改</button>
+              <button
+                class="btn btn-outline-danger"
+                @click="opendelModal('delete',item)"
+              >刪除</button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
     <!-- postModal -->
-    <div class="modal" id="postModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+    <div
+      class="modal"
+      id="postModal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
         <div class="modal-content">
           <div class="modal-header bg-primary">
             <h5 class="modal-title">新增優惠券</h5>
@@ -70,19 +90,40 @@
             >
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-            <button type="button" class="btn btn-primary" @click="postCoupon(tempcoupon.id)">儲存</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >關閉</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="postCoupon(tempcoupon.id)"
+            >儲存</button>
           </div>
         </div>
       </div>
     </div>
     <!-- delmodal -->
-    <div class="modal" id="delModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+    <div
+      class="modal"
+      id="delModal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
         <div class="modal-content">
           <div class="modal-header bg-danger">
             <h5 class="modal-title">確認刪除{{tempcoupon.title}}優惠券</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -90,8 +131,16 @@
             <p class="text-danger">確認刪除{{tempcoupon.title}}優惠券</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="postCoupon(tempcoupon.id)">確認</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >取消</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              @click="postCoupon(tempcoupon.id)"
+            >確認</button>
           </div>
         </div>
       </div>
@@ -116,7 +165,6 @@ export default {
       }/admin/coupons?page=${page}`;
       const vm = this;
       vm.$http.get(api).then((response) => {
-        console.log(response);
         vm.coupon = response.data.coupons;
       });
     },
@@ -153,7 +201,6 @@ export default {
       vm.$http[httpMethods](api, {
         data: vm.tempcoupon,
       }).then((response) => {
-        console.log(response.data);
         vm.tempcoupon = response.data;
         vm.getCoupon();
         $('#postModal').modal('hide');

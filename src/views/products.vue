@@ -306,7 +306,6 @@ export default {
       const vm = this;
       vm.isLoading = true;
       vm.$http.get(api).then((response) => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
@@ -345,8 +344,7 @@ export default {
           process.env.VUE_APP_CUSTOMPATH
         }/admin/product/${vm.tempProduct.id}`;
       }
-      vm.$http[httpMethod](api, { data: vm.tempProduct }).then((response) => {
-        console.log(response.data);
+      vm.$http[httpMethod](api, { data: vm.tempProduct }).then(() => {
         $('#productModal').modal('hide');
         $('#delProductModal').modal('hide');
         vm.getProducts();

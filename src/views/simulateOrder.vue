@@ -346,7 +346,6 @@ export default {
         vm.product = response.data.product;
         $('#productModal').modal('show');
         vm.status.loadingfile = '';
-        console.log(response.data);
       });
     },
     addtoCart(id, qty = 1) {
@@ -359,9 +358,8 @@ export default {
         qty,
       };
       vm.status.loadingfile = id;
-      vm.$http.post(url, { data: cart }).then((response) => {
+      vm.$http.post(url, { data: cart }).then(() => {
         vm.status.loadingfile = '';
-        console.log(response.data);
         vm.getCart();
       });
     },
@@ -380,7 +378,6 @@ export default {
         process.env.VUE_APP_CUSTOMPATH
       }/cart/${id}`;
       vm.$http.delete(url).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           vm.getCart();
         }
@@ -395,7 +392,6 @@ export default {
         code: vm.coupon_code,
       };
       vm.$http.post(url, { data: coupon }).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           vm.getCart();
         }
@@ -409,7 +405,6 @@ export default {
       }/order`;
       vm.$http.post(url, { data: order }).then((response) => {
         if (response.data.success) {
-          console.log(response.data.orderId);
           vm.$router.push(`/admin/simulate_orderout/${response.data.orderId}`);
         }
       });

@@ -63,7 +63,6 @@ export default {
         process.env.VUE_APP_CUSTOMPATH
       }/cart`;
       vm.$http.get(url).then((response) => {
-        console.log(response.data.data);
         vm.carts = response.data.data;
       });
     },

@@ -41,6 +41,7 @@
                 <i
                   v-if="status===product.id"
                   class="fas fa-spinner fa-spin"
+                  :disabled="status===product.id ? true : false"
                 ></i>
                 加到購物車
               </button>
@@ -128,7 +129,7 @@ export default {
           }
         });
         let i = 0;
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 4; i += 1) {
           const random = Math.floor(Math.random() * `${this.products.length}`);
           vm.randomp.push(vm.products[random]);
         }

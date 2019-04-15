@@ -15,7 +15,7 @@ export default new Vuex.Store({
     },
     pagination: {},
     categories: [],
-    status: { loaddingFile: '',},
+    status: { loaddingFile: '' },
     message: '',
     order: {
       user: {},
@@ -28,7 +28,7 @@ export default new Vuex.Store({
     getProducts(context, item = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
-        }/products?page=${item}`;
+      }/products?page=${item}`;
       axios.get(api).then((response) => {
         context.commit('PRODUCT', response.data.products);
         context.commit('CATEGORY', response.data.products);
@@ -38,23 +38,21 @@ export default new Vuex.Store({
     getCart(context) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
-        }/cart`;
+      }/cart`;
       axios.get(url).then((response) => {
-        console.log(response);
         context.commit('CARTS', response.data.data);
-
       });
     },
     addtoCart(context, { id, qty }) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
-        }/cart`;
+      }/cart`;
       const cart = {
         product_id: id,
         qty,
       };
       context.commit('LOADING', id);
-      axios.post(url, { data: cart }).then((response) => {
+      axios.post(url, { data: cart }).then(() => {
         context.dispatch('getCart');
         context.commit('LOADING', '');
       });
@@ -62,8 +60,7 @@ export default new Vuex.Store({
     removeCart(context, id) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
-        }/cart/${id}`;
-      console.log(id);
+      }/cart/${id}`;
       context.commit('LOADING', id);
       axios.delete(url).then((response) => {
         context.commit('LOADING', '');
@@ -75,7 +72,7 @@ export default new Vuex.Store({
     createdOrder(context, order) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
-        }/order`;
+      }/order`;
       axios.post(url, { data: order }).then((response) => {
         if (response.data.success) {
           router.push(`/orderout/${response.data.orderId}`);
@@ -85,9 +82,9 @@ export default new Vuex.Store({
     getOrder(context, orderId) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
-        }/order/${orderId}`;
+      }/order/${orderId}`;
       axios.get(url).then((response) => {
-        context.commit('ORDER', response.data.order)
+        context.commit('ORDER', response.data.order);
       });
     },
   },
@@ -120,7 +117,7 @@ export default new Vuex.Store({
       state.message = payload;
     },
     ORDER(state, payload) {
-      state.order = payload
+      state.order = payload;
     },
   },
   getters: {

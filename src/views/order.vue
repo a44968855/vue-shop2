@@ -9,7 +9,6 @@
           <td class="text-center">購買項目</td>
           <td class="text-right">金額</td>
           <td>是否付款</td>
-          <!-- <td>編輯</td> -->
         </tr>
       </thead>
       <tbody>
@@ -165,14 +164,12 @@ export default {
       }/admin/orders?page=${page}`;
       const vm = this;
       vm.$http.get(api).then((response) => {
-        console.log(response);
         vm.orderList = response.data.orders;
         vm.pagination = response.data.pagination;
       });
     },
     openModal(order) {
       const vm = this;
-      console.log(order);
       vm.tempOrder = { ...order };
       $('#orderModal').modal('show');
     },
@@ -181,10 +178,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_CUSTOMPATH
       }/admin/order/${vm.tempOrder.id}`;
-      console.log('api_url', api);
-
-      this.$http.put(api, { data: vm.tempOrder }).then((res) => {
-        console.log('api res:', res);
+      this.$http.put(api, { data: vm.tempOrder }).then(() => {
       });
     },
   },

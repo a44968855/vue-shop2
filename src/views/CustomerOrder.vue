@@ -24,10 +24,11 @@
                 :key="index"
               >
                 <td>
-                  <a
+                  <button
                     href="#"
-                    class="text-danger"
+                    class="btn text-danger"
                     @click.prevent="removeCart(cart.id)"
+                    :disabled="status===cart.id ? true : false"
                   >
                     <i
                       v-if="status===cart.id"
@@ -37,7 +38,7 @@
                       v-else
                       class="fas fa-trash-alt"
                     ></i>
-                  </a>
+                  </button>
                 </td>
                 <td>
                   {{cart.product.title}}

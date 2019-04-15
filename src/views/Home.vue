@@ -47,6 +47,8 @@
                 type="button"
                 class="btn btn-outline-danger btn-sm ml-auto"
                 @click="addtoCart(card.id,card.num)"
+                :class="{disabled : status===card.id}"
+                :disabled="status===card.id ? true : false"
               >
                 <i
                   v-if="status===card.id"
@@ -60,8 +62,8 @@
       </div>
     </section>
     <div class="container my-5">
-      <div class="row">
-        <div class="col-md-6 p-0">
+      <div class="form-row">
+        <div class="col-md-6">
           <div
             class="bg-cover"
             style="background-image:url(https://images.unsplash.com/photo-1519656919827-59c35dd3ce77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=681&q=80);height:380px"

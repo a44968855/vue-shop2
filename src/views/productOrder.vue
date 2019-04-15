@@ -21,13 +21,13 @@
           </div>
         </div>
         <div class="col-md-9">
-          <div class="row">
+          <div class="form-row">
             <h2
               class="text-dark"
               v-if="searchProduct.length ===0"
             >努力規劃中，敬請期待。</h2>
             <div
-              class="col-md-6 mb-4 px-2"
+              class="col-md-6 mb-4"
               v-for="(card,index) in searchProduct"
               :key="index"
             >
@@ -46,7 +46,8 @@
                   </h5>
                   <p class="card-text">{{card.content}}</p>
                   <div class>
-                    <div class="h4 text-right text-danger">售價 NT{{ card.price | currency }}/{{card.unit}}</div>
+                    <div class="h4 text-right
+                    text-danger">售價 NT{{ card.price | currency }}/{{card.unit}}</div>
                   </div>
                 </div>
                 <div class="card-footer d-flex">
@@ -64,6 +65,7 @@
                     type="button"
                     class="btn btn-outline-danger btn-sm ml-auto"
                     @click="addtoCart(card.id,products.num)"
+                    :disabled="status===card.id ? true : false"
                   >
                     <i
                       v-if="status===card.id"
